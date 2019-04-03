@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="main.css">    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Belajar Javascript</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">Biodata</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="calc.html">Kalkulator <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="planet.html">Planet</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="card border-primary card-sempit">
+                <div class="card-header text-white bg-dark">
+                    <h3>Kalkulator</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col"><input id="nilai1" type="number" value="0" class="form-control right-number"></div>
+                        <div class="col-md-1" id="operasi"></div>
+                        <div class="col"><input id="nilai2" type="number" value="0" class="form-control right-number"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col"><button class="btn btn-info full-width" onclick="document.getElementById('operasi').textContent = '+'">+</button></div>
+                        <div class="col"><button class="btn btn-info full-width" onclick="document.getElementById('operasi').textContent = '-'">-</button></div>
+                        <div class="col"><button class="btn btn-info full-width" onclick="document.getElementById('operasi').textContent = ':'">:</button></div>
+                        <div class="col"><button class="btn btn-info full-width" onclick="document.getElementById('operasi').textContent = 'X'">X</button></div>
+                    </div>
+                    <div class="row">
+                        <div class="col"><button class="btn btn-success full-width" onclick="hitung()">=</button></div>
+                    </div>
+                    <div class="row">
+                        <div class="col"><input id="hasil" class="form-control right-number" type="number" value="0"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function hitung() {
+            var nilai1 = parseInt(document.getElementById('nilai1').value);
+            var nilai2 = parseInt(document.getElementById('nilai2').value);
+            var operasi = document.getElementById('operasi').textContent;
+            var hasil = 0;
+
+            if (operasi == '+') {
+                hasil = nilai1 + nilai2;
+            }
+            else if(operasi == '-') {
+                hasil = nilai1 - nilai2;
+            }
+            else if(operasi == ':') {
+                hasil = nilai1 / nilai2;
+            }
+            else if(operasi == 'X') {
+                hasil = nilai1 * nilai2;
+            }
+
+            document.getElementById('hasil').value = hasil
+        }
+    </script>
+</body>
+</html>

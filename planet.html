@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="main.css">    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Planet List</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">Biodata</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="calc.html">Kalkulator <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="planet.html">Planet</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="card border-primary">
+                <div class="card-header text-white bg-dark">
+                    <h3>Planet List</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <select name="opsi" id="opsi" class="form-control">
+                                <option value="name">Name</option>
+                                <option value="rotation_period">Rotation Period</option>
+                                <option value="orbital_period">Orbital Period</option>
+                                <option value="diameter">Diameter</option>
+                                <option value="climate">Climate</option>
+                                <option value="gravity">Gravity</option>
+                                <option value="terrain">Terrain</option>
+                                <option value="surface_water">Surface Water</option>
+                                <option value="population">Population</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <input type="search" id="search" class="form-control" placeholder="Search" onkeyup="searchData()">
+                        </div>
+                    </div>
+                    <br>
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Rotation Period</th>
+                                <th scope="col">Orbital Period</th>
+                                <th scope="col">Diameter</th>
+                                <th scope="col">Climate</th>
+                                <th scope="col">Gravity</th>
+                                <th scope="col">Terrain</th>
+                                <th scope="col">Surface Water</th>
+                                <th scope="col">Population</th>
+                            </tr> 
+                        </thead>
+                        <tbody id="table-list">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="data.js"></script>
+    <script>
+        var dataPlanet = data.results;
+        searchData();
+
+        function searchData() {
+            var tbl = dataPlanet.filter((item) => {
+                var search = document.getElementById("search").value
+                var opsi = document.getElementById("opsi").value
+                return item[opsi].toLowerCase().includes(search.toLowerCase());
+            })
+
+            document.getElementById("table-list").innerHTML = '';
+
+            tbl.forEach(function (planet, key) {
+                document.getElementById("table-list").innerHTML += `
+                <tr>
+                    <th scope="row">${key +  1}</th>
+                    <td>${planet.name}</td>
+                    <td align="right">${planet.rotation_period}</td>
+                    <td align="right">${planet.orbital_period}</td>
+                    <td align="right">${planet.diameter}</td>
+                    <td>${planet.climate}</td>
+                    <td>${planet.gravity}</td>
+                    <td>${planet.terrain}</td>
+                    <td align="right">${planet.surface_water}</td>
+                    <td align="right">${planet.population}</td>
+                </tr>
+                `;
+            });
+        }
+    </script>
+</body>
+</html>
